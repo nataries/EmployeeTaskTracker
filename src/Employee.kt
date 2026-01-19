@@ -1,7 +1,7 @@
 class Employee(fullName: String,
     position: String,
     salary: Int,
-    yearsOfExperience: Int) {
+    yearsOfExperience: Int) : ReportGenerator{
 
     private val _fullName = fullName
     private val _position = position
@@ -27,18 +27,33 @@ class Employee(fullName: String,
         set(value) {
             _yearsOfExperience = value.coerceIn(0, 50)
         }
+
+    override fun generateReport(): String {
+        return "ФИО сотрудника: $fullName | Должность: $position | Зарплата: $salary | Стаж работы: $yearsOfExperience"
+    }
 }
 
 fun main() {
-    val employee = Employee("Иванов Пётр Андреевич", "Менеджер", 50000, 5)
-    println(employee.fullName)
-    println(employee.position)
-    println(employee.salary)
-    println(employee.yearsOfExperience)
+//    val employee = Employee("Иванов Пётр Андреевич", "Менеджер", 50000, 5)
+//    println(employee.fullName)
+//    println(employee.position)
+//    println(employee.salary)
+//    println(employee.yearsOfExperience)
+//
+//    employee.salary = -5000
+//    employee.yearsOfExperience = 120
+//
+//    println(employee.salary)
+//    println(employee.yearsOfExperience)
 
-    employee.salary = -5000
-    employee.yearsOfExperience = 120
+    //Задание 5
 
-    println(employee.salary)
-    println(employee.yearsOfExperience)
+    val employee = Employee("Каменская Елена Ивановна", "Разработчик", 120000, 6)
+    val department = DevelopmentDepartment()
+
+    val reports: List<ReportGenerator> = listOf(employee, department)
+
+    for(rep in reports) {
+        println(rep.generateReport())
+    }
 }

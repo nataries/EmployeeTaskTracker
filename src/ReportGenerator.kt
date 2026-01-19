@@ -1,1 +1,3 @@
-interface ReportGenerator{}
+interface ReportGenerator{
+    fun generateReport(): String
+}
