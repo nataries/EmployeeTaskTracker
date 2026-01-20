@@ -11,9 +11,9 @@ data class Task(
 }
 
 fun main() {
-    val task = Task("Приготовить обед", "Сварить грибной суп", priority = Priority.MEDIUM)
-    val task2 = Task("Приготовить обед", "Сварить грибной суп", priority = Priority.MEDIUM)
-    val task3 = Task("Убраться в комнате", "Подмести полы", priority = Priority.LOW, isCompleted = true)
+    val task = Task("Свести отчётность", "Отчет для компании", priority = Priority.MEDIUM)
+    val task2 = Task("Свести отчётность", "Отчет для компании", priority = Priority.MEDIUM)
+    val task3 = Task("Разработка веб-приложения", "Создание базы данных", priority = Priority.LOW, isCompleted = true)
 
     println(task.equals(task3))
     println(task.equals(task2))
@@ -24,6 +24,6 @@ fun main() {
     println(task2.toString())
     println(task3.toString())
 
-    val task4 = task.copy("Заготовки на неделю", )
+    val task4 = task.copy("Свести отчётность за квартал" )
     println(task4.toString())
 }

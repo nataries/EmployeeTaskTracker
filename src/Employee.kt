@@ -27,7 +27,16 @@ class Employee(fullName: String,
         set(value) {
             _yearsOfExperience = value.coerceIn(0, 50)
         }
-
+    var currentTask: Task? = null
+        private set
+    fun assignTask(newTask: Task) {
+        if(currentTask!=null && currentTask?.isCompleted == false) {
+            println("Сотрудник уже занят задачей ${currentTask?.title}!")
+        } else{
+            currentTask = newTask
+            println("Сотруднику назначена задача ${newTask.title}")
+        }
+    }
     override fun generateReport(): String {
         return "ФИО сотрудника: $fullName | Должность: $position | Зарплата: $salary | Стаж работы: $yearsOfExperience"
     }
@@ -48,8 +57,29 @@ fun main() {
 
     //Задание 5
 
-    val employee = Employee("Каменская Елена Ивановна", "Разработчик", 120000, 6)
+//    val employee = Employee("Каменская Елена Ивановна", "Разработчик", 120000, 6)
+//    val department = DevelopmentDepartment()
+//
+//    val reports: List<ReportGenerator> = listOf(employee, department)
+//
+//    for(rep in reports) {
+//        println(rep.generateReport())
+//    }
+
+    //Задание 6
+
+    val employee = Employee("Громов Константин Игоревич", "Разработчик", 100000, 4)
     val department = DevelopmentDepartment()
+
+    val task1 = Task("Рефакторинг кода", "Улучшить читаемость", priority = Priority.HIGH)
+    val task2 = Task("Реализация графического интерфейса", "Интерфейс приложения", priority = Priority.MEDIUM)
+
+    employee.assignTask(task1)
+    employee.assignTask(task2)
+
+    task1.isCompleted = true
+
+    employee.assignTask(task2)
 
     val reports: List<ReportGenerator> = listOf(employee, department)
 
